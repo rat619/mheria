@@ -1,0 +1,343 @@
+= *Proposition COVEA*
+Thierry Antoni, Mheria
+:title-page: *Proposition COVEA*
+:revnumber: 1.0
+:revdate: Lundi 05 Mai 2025
+:imagesdir: assets/images
+:toc: left
+:toclevels: 7
+:toc-title: Sommaire
+:sectnums:
+
+== Contexte et Objectifs
+
+Dans le cadre de sa démarche de renforcement du dispositif de contrôle interne, Covéa a déployé un outil dédié à la gestion et au suivi des contrôles. 
+
+À ce jour, l’outil présente plusieurs limitations techniques et fonctionnelles : instabilité, lenteurs, ergonomie perfectible, couverture partielle des besoins métiers, etc. 
+
+De plus, la gestion de l’outil reste fortement centralisée chez l’éditeur, limitant ainsi la capacité du client à le faire évoluer de manière autonome.
+
+Dans ce contexte, Mheria se propose d’intervenir en tant qu’intégrateur pour :
+
+- Stabiliser la solution existante en corrigeant les dysfonctionnements techniques et en fiabilisant les données
+
+- Améliorer les fonctionnalités en lien avec les processus métiers de contrôle interne
+
+- Structurer un dispositif de gouvernance technique et fonctionnelle clair et efficient
+
+- Accompagner les équipes internes dans la montée en compétences afin de favoriser une appropriation progressive de l’outil
+
+- Réduire la dépendance à l’éditeur à terme, en renforçant la capacité du client à administrer, faire évoluer et piloter l’outil en interne.
+
+- Gérer la relation avec l'éditeur 
+
+L’objectif global de cette mission est de garantir la fiabilité et la performance de l’outil, tout en assurant son appropriation durable par les équipes de Covéa, dans une logique d’autonomisation et de maîtrise du dispositif.
+
+<<<
+
+== Périmètre de la Proposition
+
+=== Ce qui est inclus
+
+L’intervention de Mheria couvre les activités suivantes :
+
+- Analyse de l’existant : revue des fonctionnalités, identification des anomalies, diagnostic de la performance et des causes d’instabilité.
+
+- Stabilisation technique de l’outil : correction des dysfonctionnements, amélioration des performances, nettoyage de données si nécessaire.
+
+- Améliorations fonctionnelles (MEV) : mise en œuvre d’évolutions mineures/modérées, en lien avec les besoins métiers identifiés lors de la phase d’analyse.
+
+- Définition et mise en place d’une gouvernance de l’outil (technique et fonctionnelle).
+
+- Accompagnement à l’appropriation : documentation, transfert de compétences, formation des équipes internes à l’administration et à l’évolution de l’outil.
+
+- Pilotage du projet : coordination, suivi de planning, gestion des risques, reporting régulier.
+
+- Prise en charge de la relation contractuelle ou commerciale avec l’éditeur.
+
+=== Ce qui est exclu
+
+Les éléments suivants sont en dehors du périmètre de cette proposition (sauf demande spécifique validée ultérieurement) :
+
+- Refonte complète de l’outil ou changement de solution.
+
+- Développements lourds ou spécifiques non identifiés dans la phase d’analyse.
+
+- Maintenance applicative à long terme (hors période de garantie si applicable).
+
+- Intégration avec des systèmes tiers (SI métier, ERP, etc.) non documentée ou non prévue au démarrage.
+
+=== Hypothèses
+
+La présente proposition repose sur les hypothèses suivantes :
+
+L’outil cible est déjà en production, accessible, et la documentation technique ou fonctionnelle disponible est fournie dès le début de la mission.
+
+Les interlocuteurs clés (métier, IT, éditeur) sont mobilisés pour les phases d’analyse, de validation et de tests.
+
+Les droits d’accès nécessaires à l’analyse et à l’intervention technique seront accordés à Mheria.
+
+L’éditeur actuel reste disponible pour répondre aux questions techniques ou fournir les informations nécessaires à la compréhension du socle de l’outil.
+
+L’environnement technique de l’outil (infrastructure, hébergement, sécurité) est stable ou sous la responsabilité d’un tiers clairement identifié.
+
+<<<
+
+== Solution Proposée
+
+=== Architecture Technique
+
+L’architecture cible reste centrée sur une organisation modulaire et structurée en couches fonctionnelles. L’objectif est de rendre le système plus résilient, mieux supervisé, et plus facilement maintenable. Les composants principaux restent inchangés (interface utilisateur, couche métier, base de données, intégrations SI), mais seront renforcés par des pratiques de qualité logicielle, de traçabilité et de contrôles en amont des traitements.
+
+
+=== Description des Composants (Mise à jour et renforcement)
+
+*Optimisation de paramétrage (revue de code VB et SQL)* ::
+Une revue technique des modules paramétrés en Visual Basic et SQL sera réalisée, visant à :
+- Identifier les anomalies de performance (requêtes inefficaces, code redondant)
+- Proposer des améliorations de lisibilité et de maintenance
+- Optimiser les interactions avec la base de données
+
+*Mise en place de règles de cohérence (à la saisie et à l'import)* ::
+Intégration de règles de validation côté interface et base :
+- Contrôles bloquants ou alertes à la saisie utilisateur
+- Filtres et nettoyages automatiques à l’importation de fichiers
+- Mise en place de retours d’erreur explicites en cas d’incohérences
+
+*Mise en place de versionning et de code review via GIT Covéa* ::
+Industrialisation des développements et paramétrages par :
+- L’utilisation du dépôt GIT Covéa pour versionner tous les paramétrages (VB/SQL/scripts)
+- La mise en place de procédures de merge & pull request revues par un référent technique
+- Un meilleur suivi des modifications, facilitant les audits, le rollback et la reprise après incident
+
+*Revue des flux avec contrôles et plans de secours* ::
+Un audit des flux d’intégration sera effectué, débouchant sur :
+- La mise en place de contrôles de format, de correspondance référentielle, de volumétrie avant ingestion
+- L’enrichissement des journaux de traitement pour un diagnostic plus rapide en cas d’échec
+- La définition de mécanismes de repli ou de reprise manuelle assistée, avec journalisation des rejets
+
+*Revue de l’organisation des livraisons de paramétrage avec l’éditeur* ::
+Dans un objectif de traçabilité et de meilleure gouvernance :
+- Mise en place d’un processus structuré de validation et de documentation des livraisons (Recette, Préprod, Prod)
+- Tenue d’un journal centralisé des interventions externes (éditeur)
+- Validation systématique sur environnement intermédiaire avant déploiement en production
+
+*Prise en charge de la montée de version Solstice (y compris Walling)* ::
+- Accompagnement technique et fonctionnel dans le passage à la nouvelle version Solstice
+- Intégration du Walling et validation des impacts
+- Réalisation de campagnes de tests de non-régression (manuels mais pourront être automatisés selon le contexte)
+- Mise à jour des environnements de test avant mise en production
+
+*Rédaction des Spécifications Techniques Détaillées (STD)* ::
+- Production de documents techniques formalisant le comportement attendu des traitements, règles de gestion, flux, écrans
+- Format standardisé, validé avec les interlocuteurs Covéa
+- Utilisation des STD comme base de revue, validation, et documentation des évolutions
+
+
+=== Choix Technologiques
+
+Les actions s'appuient sur des technologies et outils standards :
+
+- **Langages** : Visual Basic (paramétrage), SQL
+- **Contrôle de version** : GIT Covéa (interopérabilité avec la forge interne)
+- **Outils de revue** : GIT Pull Requests / Merge Reviews
+- **Gestion des imports/flux** : Scripts d'automatisation (PowerShell, SQL Server Agent, etc.)
+- **Supervision / logs** : Fichiers de trace enrichis, supervision applicative (à définir selon l’existant)
+
+<<<
+
+== Plan de Mise en Œuvre
+
+=== Phases du Projet
+
+. *Phase 1 – Analyse, cadrage et préparation*
+  - Audit de l’outil existant (code VB, requêtes SQL, paramétrages)
+  - Revue des flux existants et des règles de gestion
+  - Identification des points de blocage et des pistes d’optimisation
+  - Organisation du GIT Covéa (branches, process de revue)
+  - Définition de la stratégie de tests de non-régression
+
+. *Phase 2 – Stabilisation et optimisation*
+  - Optimisation des paramétrages (VB/SQL)
+  - Mise en place des contrôles de cohérence (saisie/import)
+  - Implémentation des flux de contrôle et gestion des rejets
+  - Structuration du processus de versionning (GIT)
+  - Rédaction des premières STD associées aux corrections
+
+. *Phase 3 – Montée de version Solstice et intégration Walling*
+  - Préparation des environnements (copie, anonymisation si besoin)
+  - Installation de la nouvelle version (en coordination avec l’éditeur)
+  - Réalisation des tests de non-régression fonctionnels et techniques
+  - Revue des impacts sur les flux, écrans, règles de gestion
+
+. *Phase 4 – Structuration de la gouvernance et documentation*
+  - Formalisation du processus de livraison (Rec / Préprod / Prod)
+  - Mise en place du journal de livraisons de l’éditeur
+  - Finalisation des STD
+  - Formation des équipes internes si prévu
+
+. *Phase 5 – Mise en production et accompagnement*
+  - Accompagnement à la mise en production
+  - Suivi des premiers jours d’exploitation
+  - Clôture et recommandations pour la phase de transfert
+
+=== Planning Prévisionnel
+
+[cols="1,1,1", options="header"]
+|===
+|Étape |Période estimée |Livrable clé
+|Phase 1 – Audit & cadrage |S1 à S2 |Backlog, plan de tests, organisation GIT
+|Phase 2 – Optimisation & stabilisation |S3 à S6 |Code optimisé, contrôles intégrés, STD v1
+|Phase 3 – Montée de version |S7 à S8 |Nouvelle version validée, PV de tests
+|Phase 4 – Gouvernance & documentation |S9 |Journal de livraison, STD v2
+|Phase 5 – Mise en production & suivi |S10 |Mise en production validée, rapport final
+|===
+
+<<<
+
+== Livrables
+
+[cols="1,2", options="header"]
+|===
+|Phase |Livrables associés
+
+|Phase 1 – Analyse, cadrage et préparation
+|* Rapport d’audit technique (VB/SQL, flux) +
+* Plan de tests de non-régression +
+* Arborescence initiale du dépôt GIT Covéa + 
+* Backlog des chantiers à engager (par ordre de priorité)
+
+|Phase 2 – Stabilisation et optimisation
+|* Code paramétré optimisé et documenté +
+* Contrôles de cohérence opérationnels (formulaires, imports) +
+* Documentation des règles de contrôle mises en place +
+* Premières versions des Spécifications Techniques Détaillées (STD) +
+* Procédures de versionning et revue de code en production
+
+|Phase 3 – Montée de version Solstice + Walling
+|* Nouvel environnement installé et opérationnel +
+* PV de tests de non-régression (fonctionnels et techniques) +
+* Rapport d’impact de la nouvelle version +
+* Plan de remédiation si anomalies détectées
+
+|Phase 4 – Gouvernance et documentation
+|* Procédure de livraison validée (REC/PRD) +
+* Journal des interventions de l’éditeur (template et 1er suivi) +
+* STD finalisées et validées (version 2) +
+* Kit de transfert interne (si reprise de la main par Covéa)
+
+|Phase 5 – Mise en production et accompagnement
+|* Rapport de mise en production +
+* PV de recette définitive +
+* Rapport de clôture du projet incluant recommandations 
+|===
+
+<<<
+== Gouvernance et Méthodologie
+
+=== Organisation projet
+
+[cols="1,2", options="header"]
+|===
+|Rôle |Responsabilités
+
+|Chef de projet client
+|Pilotage global, validation des livrables, arbitrage fonctionnel
+
+|Chef de projet prestataire
+|Coordination des travaux, planification, communication avec le client
+
+|Référent technique
+|Suivi qualité du code, revue des paramétrages, intégration des bonnes pratiques GIT
+
+|Développeurs / Paramétreurs
+|Mise en œuvre des optimisations, contrôles, tests, documentation
+
+|MOA / Utilisateurs clés
+|Expression des besoins, participation aux tests et validations
+
+|Éditeur (tiers)
+|Support à la montée de version, interventions encadrées sur l’outil
+|===
+
+=== Méthodologie de travail
+
+L’approche proposée est itérative et collaborative :
+
+- **Méthodologie hybride** : cycle en V structuré pour la montée de version et les phases critiques, complété par des **sprints courts** (2 semaines) pour les optimisations, tests et documentation.
+- **Réunions hebdomadaires** de suivi d’avancement avec les parties prenantes.
+- **Comités de pilotage** à chaque fin de phase, avec validation des livrables et arbitrages si nécessaire.
+- **Outils de suivi** : tableau de bord de tâches (Excel, Jira ou outil Covéa), documentation partagée, backlog priorisé.
+
+<<<
+
+== Estimation Budgétaire
+
+=== Estimation en charge (jours-homme)
+
+[cols="1,1", options="header"]
+|===
+|Phase |Estimation (JH)
+
+|Phase 1 – Cadrage et audit |8 JH  
+|Phase 2 – Optimisation et contrôles |20 JH  
+|Phase 3 – Montée de version + tests |12 JH  
+|Phase 4 – Gouvernance / documentation |10 JH  
+|Phase 5 – Mise en prod / accompagnement |5 JH  
+
+|**Total estimé** |**55 JH**
+|===
+
+=== Conditions tarifaires
+
+- Tarification journalière selon grille en vigueur ou contrat-cadre.
+- Toute évolution significative du périmètre fera l’objet d’un avenant ou chiffrage complémentaire.
+- Déplacements éventuels sur site à prévoir en sus si non couverts par le forfait.
+
+<<<
+
+== Risques et Mesures d’Atténuation
+
+[cols="1,2,2", options="header"]
+|===
+|Risque |Impact potentiel |Mesure d’atténuation
+
+|Complexité du code existant non documenté
+|Ralentissement de l’audit, risques de régression
+|Phase d’analyse approfondie + tests de non-régression systématiques
+
+|Intervention parallèle de l’éditeur non coordonnée
+|Effets de bord imprévus, perte de traçabilité
+|Journalisation obligatoire + revue conjointe des livraisons
+
+|Non-disponibilité de certains référents côté client
+|Blocage de validation, prise de décision retardée
+|Planification en avance + substitution possible via backup de référents
+
+|Changements tardifs de version logicielle par l’éditeur
+|Tests obsolètes, retards de mise en prod
+|Veille continue + coordination proactive avec l’éditeur
+
+|Accès restreint à certains environnements ou outils (GIT, préprod)
+|Limitation des capacités d’intervention ou de test
+|Accords d’accès anticipés, création d’environnements clones si nécessaire
+|===
+
+<<<
+
+== Conclusion
+
+Cette proposition vise à assurer une montée en maturité de l’outil de gestion du contrôle interne utilisé par Covéa, en alliant :
+
+- Stabilisation technique via des optimisations ciblées
+- Mise en place de bonnes pratiques de développement et de gouvernance
+- Intégration sécurisée de la nouvelle version logicielle et de ses composants (Walling)
+- Structuration documentaire avec les STD et les livrables de traçabilité
+
+Nous nous engageons sur une approche structurée, progressive et transparente, visant à **transférer la maîtrise de l’outil au client** à moyen terme.
+
+[NOTE]
+====
+Nous restons à disposition pour ajuster cette proposition en fonction de vos priorités, contraintes internes ou évolutions à venir. Un échange de cadrage complémentaire peut être organisé pour finaliser ensemble le plan de mise en œuvre.
+====
+
