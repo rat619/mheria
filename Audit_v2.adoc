@@ -1,0 +1,117 @@
+= Rapport d'étonnement
+Auteur: Prénom NOM
+Date: 2025-05-16
+Service: [Nom du service]
+Période observée: [à compléter]
+
+== 1. Introduction
+
+Ce rapport a pour objectif de partager un retour d’expérience sur l’organisation et les pratiques techniques observées dans le service. Il met en lumière des points d’étonnement ainsi que des recommandations concrètes visant à améliorer la robustesse, la sécurité et l’efficacité globale du système.
+
+== 2. Étonnements techniques et recommandations associées
+
+=== 2.1. Absence de gestion des versions et de sauvegardes
+
+*Étonnement:* Aucun outil de versionning n’est utilisé pour les paramétrages ou les fichiers techniques. Il n’existe pas non plus de stratégie formelle de sauvegarde, ni de mécanisme automatisé de backup ou de restauration.
+
+*Recommandation:* Mettre en place un outil de versionnement type Git ou SVN pour le suivi des évolutions de configuration et de paramétrage. Définir une politique de sauvegarde automatique, historisée et vérifiée régulièrement (incluant fichiers de config, scripts, etc.).
+
+=== 2.2. Étanchéité insuffisante entre environnements
+
+*Étonnement:* Trois environnements sont présents (recette, préproduction, production) mais les développements sont souvent réalisés directement sur l’environnement de recette, ce qui remet en cause son rôle de validation.
+
+*Recommandation:* Réserver l’environnement de recette aux tests fonctionnels réalisés en interne. Les livraisons éditeur doivent être testées en préproduction avant leur passage en production. Chaque livraison devrait être contenue dans un package précis.
+
+=== 2.3. Livraisons non formalisées
+
+*Étonnement:* Les livraisons ne sont pas accompagnées de package formel de déploiement. Les correctifs comme les évolutions sont installés directement sur les trois environnements.
+
+*Recommandation:* Exiger que chaque livraison de l’éditeur soit formalisée sous forme de package unique avec description des changements, documentation, et mode opératoire d’installation. Cela permet une meilleure traçabilité et facilite les tests.
+
+=== 2.4. Interventions en production non tracées
+
+*Étonnement:* L’éditeur intervient directement en production sans fournir de rapport d’intervention ni de documentation sur les modifications réalisées.
+
+*Recommandation:* Créer un processus d’intervention contrôlé : un seul compte admin pour l’éditeur, désactivation des autres comptes, validation préalable de chaque action, planning d’intervention, et traçabilité complète (journalisation, CR).
+
+=== 2.5. SFD non mises à jour
+
+*Étonnement:* Les Spécifications Fonctionnelles Détaillées (SFD) existent mais ne sont pas systématiquement mises à jour lors des évolutions applicatives.
+
+*Recommandation:* Intégrer la mise à jour des SFD dans le processus de gestion de version. La documentation doit être validée avant la mise en production de toute nouvelle fonctionnalité.
+
+=== 2.6. Coordination entre MOE interne et éditeur insuffisante
+
+*Étonnement:* MOE interne et éditeur travaillent parfois en parallèle sans coordination, ce qui a conduit à des déploiements non validés directement en production.
+
+*Recommandation:* Organiser les rôles : les tests internes doivent être faits en recette. L’éditeur ne doit intervenir qu’à partir d’un package livré et testé. Il doit également récupérer le paramétrage de la recette avant d’intervenir.
+
+=== 2.7. Multiplicité de comptes éditeur en production
+
+*Étonnement:* Plusieurs comptes de l’éditeur sont actifs en production, ce qui augmente les risques de manipulation non maîtrisée.
+
+*Recommandation:* Désactiver tous les comptes sauf un compte administrateur unique. Chaque intervention doit être validée, planifiée et tracée avec journalisation des actions.
+
+=== 2.8. Absence de documentation technique
+
+*Étonnement:* Aucune spécification technique reçue de l’éditeur pour les fonctionnalités déployées (droits multiaxe, batch, TODO, frontcmd...).
+
+*Recommandation:* Demander à l’éditeur de fournir les spécifications techniques détaillées pour chaque livraison, incluant architecture, scripts, paramètres techniques et intégration avec les composants existants.
+
+=== 2.9. Gestion des flux d’import non intégrée
+
+*Étonnement:* Les flux d’import sont gérés de manière décorrélée de la base de données, entraînant des erreurs fréquentes liées aux fichiers de correspondance.
+
+*Recommandation:* Créer un programme d’export depuis l’outil pour produire automatiquement les flux d’import à jour, garantissant la cohérence entre données applicatives et flux.
+
+=== 2.10. Fonctionnalité de démultiplication dépendante de l’éditeur
+
+*Étonnement:* Chaque évolution liée à la démultiplication nécessite une intervention de l’éditeur.
+
+*Recommandation:* Développer une solution interne (script Python ou Frontscript) déposant un fichier sur un serveur, générant l’output et assurant la gestion d’erreurs.
+
+== 3. Étonnements organisationnels et recommandations associées
+
+=== 3.1. Rôles et responsabilités non formalisés
+
+*Étonnement:* Aucun référentiel des rôles et responsabilités n’est partagé au sein de l’équipe.
+
+*Recommandation:* Formaliser les rôles par périmètre fonctionnel et technique. Cela permet une meilleure communication et un meilleur suivi des responsabilités.
+
+=== 3.2. Absence de référents et backups
+
+*Étonnement:* Certains périmètres critiques sont gérés sans backup identifié.
+
+*Recommandation:* Désigner un référent principal par périmètre et un backup opérationnel pour garantir la continuité de service en cas d’absence.
+
+=== 3.3. Sollicitations excessives en comité
+
+*Étonnement:* Trop de personnes sont sollicitées dans les instances de décision, impactant la capacité de travail.
+
+*Recommandation:* Limiter la participation aux comités aux seuls référents concernés. Diffuser les décisions ou comptes rendus aux autres membres.
+
+=== 3.4. Absence de serveur de batch dédié
+
+*Étonnement:* Aucun serveur n’est dédié à la gestion des flux internes (envois automatiques, génération de fichiers, alertes, etc.).
+
+*Recommandation:* Mettre en place un serveur de batch interne pour supporter les flux automatisés gérés par l’équipe.
+
+=== 3.5. Dépendance à l’environnement éditeur pour les tests lourds
+
+*Étonnement:* L’environnement de développement est hébergé chez l’éditeur, limitant les tests lourds ou techniques en autonomie.
+
+*Recommandation:* Installer un serveur de développement interne permettant de tester les binaires, les scripts complexes, ou les changements d’architecture.
+
+== 4. Points positifs observés
+
+- Réunions quotidiennes (daily) efficaces dans le cadre de la méthode agile.
+- Partage d’information fluide et transversal.
+- Existence de SFD (même si amélioration nécessaire sur la mise à jour).
+- Référents métiers et sponsors impliqués.
+- Projets bien cadrés, avec jalons clairs.
+- Transparence sur les budgets alloués.
+- Outils de suivi performants : ServiceNow pour les incidents, Jira pour les évolutions et la planification.
+
+== 5. Conclusion
+
+L’environnement observé présente des points forts mais aussi des risques organisationnels, techniques et de sécurité. Des actions ciblées et structurées peuvent être menées à court et moyen terme pour améliorer la maîtrise des environnements, sécuriser les pratiques, et renforcer l’autonomie de l’équipe vis-à-vis de l’éditeur.
