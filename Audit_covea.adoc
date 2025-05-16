@@ -1,0 +1,87 @@
+= Rapport d'étonnement
+Auteur: Prénom NOM
+Date: 2025-05-16
+Service: [Nom du service]
+Période observée: [à compléter]
+
+== 1. Introduction
+
+Ce rapport a pour objectif de partager un retour d’expérience sur l’organisation et les pratiques techniques observées dans le service. Il met en lumière des points d’étonnement ainsi que des recommandations concrètes visant à améliorer la robustesse, la sécurité et l’efficacité globale du système.
+
+== 2. Étonnements techniques et recommandations associées
+
+=== 2.1. Absence de gestion des versions et de sauvegardes
+*Étonnement:* Aucun outil de versionning n’est utilisé ; aucune stratégie de sauvegarde claire n’est en place.
+*Recommandation:* Mettre en place un outil de versionnement (Git, SVN) et une politique de sauvegarde régulière et historisée.
+
+=== 2.2. Étanchéité insuffisante entre environnements
+*Étonnement:* Les développements sont faits directement en recette, ce qui compromet la séparation entre environnements.
+*Recommandation:* Réserver la recette aux tests internes. Livraisons éditeur via packages formalisés testés en préproduction.
+
+=== 2.3. Livraisons non formalisées
+*Étonnement:* L’éditeur ne fournit pas de packages structurés ; les évolutions sont déployées directement.
+*Recommandation:* Exiger un package par livraison, avec journal des modifications et mode opératoire.
+
+=== 2.4. Interventions en production non tracées
+*Étonnement:* Aucune documentation n’est fournie après intervention de l’éditeur.
+*Recommandation:* Un seul compte admin éditeur, accès temporaire validé en amont, journalisation obligatoire.
+
+=== 2.5. SFD non mises à jour
+*Étonnement:* Les spécifications fonctionnelles détaillées sont obsolètes.
+*Recommandation:* Instaurer une mise à jour systématique des SFD à chaque évolution.
+
+=== 2.6. MOE interne et éditeur non coordonnés
+*Étonnement:* Des développements internes ont été livrés en production sans coordination.
+*Recommandation:* Séparer strictement les périmètres. Chaque livraison doit être testée et validée en recette avant production.
+
+=== 2.7. Multiplicité de comptes éditeur en production
+*Étonnement:* Plusieurs comptes éditeur sont actifs en production.
+*Recommandation:* Supprimer tous les comptes sauf un compte nominatif. Intervention validée, planifiée et tracée.
+
+=== 2.8. Absence de documentation technique
+*Étonnement:* Aucune spécification technique reçue pour certaines fonctionnalités livrées.
+*Recommandation:* Exiger la documentation technique pour chaque fonctionnalité livrée.
+
+=== 2.9. Gestion des flux d’import non intégrée
+*Étonnement:* Fichiers de correspondance gérés manuellement, risques d’erreurs.
+*Recommandation:* Créer un outil d’export automatisé à partir de l’outil pour alimenter les flux.
+
+=== 2.10. Fonctionnalité de démultiplication dépendante de l’éditeur
+*Étonnement:* Chaque évolution nécessite une intervention éditeur.
+*Recommandation:* Développer un script interne (Python ou Frontscript) pour automatiser le traitement et la gestion d'erreurs.
+
+== 3. Étonnements organisationnels et recommandations associées
+
+=== 3.1. Rôles et responsabilités non formalisés
+*Étonnement:* Absence de cartographie des rôles.
+*Recommandation:* Formaliser les rôles et responsabilités au sein de l’équipe.
+
+=== 3.2. Absence de référents et de backups
+*Étonnement:* Manque de backup sur certaines missions critiques.
+*Recommandation:* Désigner un référent et un backup pour chaque domaine.
+
+=== 3.3. Trop de sollicitations en comité
+*Étonnement:* Trop d’acteurs invités aux comités, perte d’efficacité.
+*Recommandation:* Limiter la présence aux référents. Diffuser ensuite les informations ciblées.
+
+=== 3.4. Pas de serveur batch interne
+*Étonnement:* Pas d’infrastructure pour automatiser les flux.
+*Recommandation:* Mettre en place un serveur batch dédié à l’équipe (mails auto, fichiers, alertes…).
+
+=== 3.5. Environnement de dev externe
+*Étonnement:* Dépendance à l’environnement eFront pour les développements lourds.
+*Recommandation:* Installer un serveur de développement en interne pour les tests avancés.
+
+== 4. Points positifs observés
+
+- Méthodologie agile bien en place (daily efficaces).
+- Partage d’information fluide.
+- Présence de SFD, malgré la nécessité de mise à jour.
+- Référents métiers et sponsors impliqués.
+- Projets bien cadrés.
+- Transparence sur les budgets.
+- Outils de suivi efficaces : ServiceNow, Jira, etc.
+
+== 5. Conclusion
+
+L’environnement actuel fonctionne mais présente des risques techniques et organisationnels. Des actions concrètes peuvent améliorer la sécurité, l’autonomie, la traçabilité et la qualité des livraisons. Ces recommandations visent à structurer durablement les pratiques et renforcer la maîtrise des environnements et des processus.
