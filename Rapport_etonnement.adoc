@@ -1,0 +1,114 @@
+= Rapport d’étonnement – composante technique et organisationnelle
+Auteur:: Prénom NOM
+Service:: [Nom du service]
+Date:: 2025-05-16
+Période observée:: [à compléter]
+
+== 1. Objet du rapport
+
+Ce rapport d’étonnement a pour but de présenter une vision objective des pratiques techniques et organisationnelles observées au sein du service, notamment dans le cadre de l’exploitation, du développement, et de la relation avec l’éditeur. Il vise à faire émerger les points d’alerte, les dysfonctionnements, ainsi que les leviers d’amélioration à court et moyen terme.
+
+== 2. Constat général
+
+L’équipe est impliquée, structurée en mode projet, avec une réelle dynamique agile et un bon niveau de collaboration interne. Cependant, plusieurs fragilités techniques et organisationnelles limitent l'efficacité globale et la sécurisation des opérations. Ces points d’attention concernent principalement :
+
+- L'absence de formalisme dans la gestion des livraisons.
+- La gestion des environnements non étanche.
+- Une faible maîtrise des interventions de l’éditeur.
+- Une documentation incomplète.
+- Une organisation perfectible des rôles internes.
+
+== 3. Étonnements techniques
+
+=== 3.1. Gestion des versions et des sauvegardes
+
+*Observation* :: Aucun outil de versionning n’est en place. Il n’existe ni plan de backup formalisé ni processus de restauration documenté.  
+*Risque* :: Perte d’historique, erreurs non traçables, instabilité après incident.  
+*Recommandation* :: Mettre en œuvre un outil de gestion de versions (Git) et un plan de sauvegarde/restauration incluant le paramétrage applicatif.
+
+=== 3.2. Manque d’étanchéité entre environnements
+
+*Observation* :: Les développements sont effectués directement sur l’environnement de recette.  
+*Risque* :: Absence de validations indépendantes, erreurs propagées en production.  
+*Recommandation* :: Réserver la recette aux tests internes. Utiliser la préproduction pour valider les packages éditeurs avant livraison en production.
+
+=== 3.3. Absence de packaging formel pour les livraisons éditeur
+
+*Observation* :: Les livraisons sont réalisées sans packaging structuré ni documentation associée.  
+*Risque* :: Régressions, erreurs d’intégration, non-reproductibilité.  
+*Recommandation* :: Imposer des livrables formalisés (contenu, release note, mode opératoire d’installation).
+
+=== 3.4. Interventions éditeur non encadrées
+
+*Observation* :: L’éditeur peut intervenir directement en production sans validation ni journalisation.  
+*Risque* :: Perte de contrôle, incidents non analysables, sécurité compromise.  
+*Recommandation* :: Réduire les accès à un seul compte admin contrôlé, planifier les interventions, documenter systématiquement chaque action.
+
+=== 3.5. Documentation technique manquante
+
+*Observation* :: Les fonctionnalités déployées (droits multiaxe, frontcmd, etc.) ne sont pas documentées par l’éditeur.  
+*Risque* :: Incompréhension, erreurs de configuration, dépendance excessive.  
+*Recommandation* :: Exiger des spécifications techniques systématiques pour chaque nouvelle fonctionnalité.
+
+=== 3.6. Gestion des flux import non intégrée
+
+*Observation* :: Les flux d’import ne sont pas alignés sur la base réelle, les fichiers de correspondance sont obsolètes.  
+*Risque* :: Rejets fréquents, mauvaise synchronisation.  
+*Recommandation* :: Automatiser les exports depuis l’outil pour générer les flux d’import à jour.
+
+=== 3.7. Dépendance excessive pour la démultiplication
+
+*Observation* :: Chaque évolution de démultiplication nécessite une intervention éditeur.  
+*Risque* :: Allongement des délais, coûts inutiles.  
+*Recommandation* :: Automatiser cette tâche via script Python ou FrontScript avec dépôt sécurisé et gestion d’erreurs.
+
+== 4. Étonnements organisationnels
+
+=== 4.1. Rôles non définis
+
+*Observation* :: Absence de cartographie des rôles fonctionnels et techniques.  
+*Risque* :: Ambiguïtés, doublons, tâches non prises en charge.  
+*Recommandation* :: Formaliser les responsabilités et désigner des référents par périmètre.
+
+=== 4.2. Absence de backups opérationnels
+
+*Observation* :: Aucun plan de continuité ou backup désigné sur les sujets critiques.  
+*Risque* :: Perte de connaissances, rupture de service.  
+*Recommandation* :: Identifier des backups et organiser la montée en compétences.
+
+=== 4.3. Sollicitations excessives dans les instances
+
+*Observation* :: Trop d’acteurs sont conviés aux comités, ralentissant la production.  
+*Risque* :: Perte de temps, dispersion des efforts.  
+*Recommandation* :: Limiter la présence aux seuls référents concernés, diffuser ensuite les décisions.
+
+=== 4.4. Infrastructure interne insuffisante
+
+*Observation* :: L’équipe ne dispose ni de serveur de batch ni d’un environnement de développement propre.  
+*Risque* :: Manque d’autonomie, dépendance à l’éditeur pour les tests.  
+*Recommandation* :: Mettre en place un serveur de batch pour les flux internes et un serveur de développement localisé.
+
+== 5. Synthèse des recommandations prioritaires
+
+|===
+| Domaine | Recommandation | Priorité
+
+| Gestion des versions | Intégrer un outil de versionning, définir une stratégie de backup | Haute
+| Livraisons éditeur | Mettre en place des packages documentés et testés | Haute
+| Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute
+| Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne
+| Organisation interne | Structurer les rôles et backups | Haute
+| Infrastructures | Créer un serveur batch + dev interne | Moyenne
+|===
+
+== 6. Points positifs
+
+- Méthode agile bien intégrée avec daily efficaces.
+- Bonne communication et partage d’informations.
+- Projets cadrés, sponsors impliqués, référents métiers identifiés.
+- Outils performants pour la gestion des incidents (ServiceNow), des projets et des tâches (Jira).
+- Transparence budgétaire.
+
+== 7. Conclusion
+
+L’équipe bénéficie d’un cadre méthodologique solide et d’un bon engagement collectif. Néanmoins, plusieurs fragilités opérationnelles peuvent être rapidement corrigées via la mise en place de pratiques plus industrielles (outillage, documentation, cloisonnement des environnements) et une redéfinition des rôles. Ces mesures renforceront la résilience, l’autonomie et la maîtrise du cycle de vie applicatif.
