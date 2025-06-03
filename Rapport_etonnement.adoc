@@ -1,4 +1,4 @@
-= Rapport d’étonnement – composante technique
+= Rapport d’étonnement – composante technique et organisationnelle
 Auteur:: Thierry RESAMPA ANTONI
 Service:: SRN
 Date:: 2025-06-03
@@ -76,7 +76,7 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 *Recommandation* :: Délimiter le périmètre de chaque acteur (Editeur, MOE, MOA, Référents métier)
 
 === 4.2. Absence de backups opérationnels
-*Observation* :: Aucun plan de continuité ou backup désigné sur les sujets critiques.  
+*Observation* :: Peu ou pas de backup désigné sur les sujets critiques.  
 *Risque* :: Perte de connaissances, rupture de service.  
 *Recommandation* :: Identifier des backups et organiser la montée en compétences.
 
@@ -97,7 +97,7 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 | Livraisons éditeur | Mettre en place des packages documentés et testés | Haute | A démarrer | Demande à formaliser
 | Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute | A démarrer | Demande à formaliser
 | Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne | A démarrer | Demande à formaliser
-| Infrastructures | Créer un serveur batch + environnement de dev interne | Moyenne | A valider et chiffrer | 
+| Infrastructures | Créer un serveur batch + environnement de dev interne | Moyenne | A étudier | 
 |===
 
 == 6. Autres constats
