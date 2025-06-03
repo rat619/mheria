@@ -1,4 +1,4 @@
-= Rapport d’étonnement – composante technique et organisationnelle
+ = Rapport d’étonnement – composante technique et organisationnelle
 Auteur:: Prénom NOM
 Service:: [Nom du service]
 Date:: 2025-05-16
@@ -91,14 +91,15 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 == 5. Synthèse des recommandations prioritaires
 
 |===
-| Domaine | Recommandation | Priorité
+| Domaine | Recommandation | Priorité | Statut | Actions
 
-| Gestion des versions | Intégrer un outil de versionning, définir une stratégie de backup | Haute
-| Livraisons éditeur | Mettre en place des packages documentés et testés | Haute
-| Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute
-| Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne
-| Organisation interne | Structurer les rôles et backups | Haute
-| Infrastructures | Créer un serveur batch + dev interne | Moyenne
+| Gestion des versions | Intégrer un outil de versionning, définir une stratégie de backup | Haute | En cours | - Création d'un dépôt sur SPIC Covéa +
+- Faire le lien avec Bitbucket pour le versionning GIT +
+- Faire le lien avec les tickets JIRA pour le cloisonnement
+| Livraisons éditeur | Mettre en place des packages documentés et testés | Haute | Demande à formaliser |
+| Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute | A valider | 
+| Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne | Demande à formaliser |
+| Infrastructures | Créer un serveur batch + dev interne | Moyenne | A valider et chiffrer | 
 |===
 
 == 6. Points positifs
