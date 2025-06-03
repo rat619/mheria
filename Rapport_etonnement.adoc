@@ -1,12 +1,12 @@
- = Rapport d’étonnement – composante technique et organisationnelle
-Auteur:: Prénom NOM
-Service:: [Nom du service]
-Date:: 2025-05-16
-Période observée:: [à compléter]
+= Rapport d’étonnement – composante technique
+Auteur:: Thierry RESAMPA ANTONI
+Service:: SRN
+Date:: 2025-06-03
+Période observée:: 04/2025 - 06/2025
 
 == 1. Objet du rapport
 
-Ce rapport d’étonnement a pour but de présenter une vision objective des pratiques techniques et organisationnelles observées au sein du service, notamment dans le cadre de l’exploitation, du développement, et de la relation avec l’éditeur. Il vise à faire émerger les points d’alerte, les dysfonctionnements, ainsi que les leviers d’amélioration à court et moyen terme.
+Ce rapport d’étonnement a pour but de présenter une vision objective des pratiques techniques et organisationnelles observées au sein du service, notamment dans le cadre de la maintenance, l’exploitation et le développement du progiciel eFront. Il vise à faire émerger les points d’alerte, les dysfonctionnements, ainsi que les leviers d’amélioration à court et moyen terme.
 
 == 2. Constat général
 
@@ -16,7 +16,6 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 - La gestion des environnements non étanche.
 - Une faible maîtrise des interventions de l’éditeur.
 - Une documentation incomplète.
-- Une organisation perfectible des rôles internes.
 
 == 3. Étonnements techniques
 
@@ -24,7 +23,7 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 
 *Observation* :: Aucun outil de versionning n’est en place. Il n’existe ni plan de backup formalisé ni processus de restauration documenté.  
 *Risque* :: Perte d’historique, erreurs non traçables, instabilité après incident.  
-*Recommandation* :: Mettre en œuvre un outil de gestion de versions (Git) et un plan de sauvegarde/restauration incluant le paramétrage applicatif.
+*Recommandation* :: Mettre en œuvre un outil de gestion de versions et un plan de sauvegarde/restauration incluant le paramétrage applicatif.
 
 === 3.2. Manque d’étanchéité entre environnements
 
@@ -36,7 +35,7 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 
 *Observation* :: Les livraisons sont réalisées sans packaging structuré ni documentation associée.  
 *Risque* :: Régressions, erreurs d’intégration, non-reproductibilité.  
-*Recommandation* :: Imposer des livrables formalisés (contenu, release note, mode opératoire d’installation).
+*Recommandation* :: Imposer des livrables formalisés (contenu, release note, mode opératoire d’installation). Les livraisons de paramétrages ne doivent être réalisées par les équipes internes.
 
 === 3.4. Interventions éditeur non encadrées
 
@@ -46,32 +45,37 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 
 === 3.5. Documentation technique manquante
 
-*Observation* :: Les fonctionnalités déployées (droits multiaxe, frontcmd, etc.) ne sont pas documentées par l’éditeur.  
+*Observation* :: Les fonctionnalités déployées (droits multiaxe, batch, etc.) ne sont pas documentées par l’éditeur.  
 *Risque* :: Incompréhension, erreurs de configuration, dépendance excessive.  
 *Recommandation* :: Exiger des spécifications techniques systématiques pour chaque nouvelle fonctionnalité.
 
 === 3.6. Gestion des flux import non intégrée
 
-*Observation* :: Les flux d’import ne sont pas alignés sur la base réelle, les fichiers de correspondance sont obsolètes.  
+*Observation* :: Les flux d’import ne sont pas alignés sur la base de données eFront en temps réel, l'utilisation des fichiers de correspondance (fichier de transco) présente un risque élevé de rejet.  
 *Risque* :: Rejets fréquents, mauvaise synchronisation.  
-*Recommandation* :: Automatiser les exports depuis l’outil pour générer les flux d’import à jour.
+*Recommandation* :: Basculer la création des fichiers de sortie dans eFront directement. Les batchs externes ne doivent servir que pour l'ordonnancement.
 
-=== 3.7. Dépendance excessive pour la démultiplication
+=== 3.7. Dépendance excessive pour la fonctionnalité de démultiplication
 
 *Observation* :: Chaque évolution de démultiplication nécessite une intervention éditeur.  
 *Risque* :: Allongement des délais, coûts inutiles.  
 *Recommandation* :: Automatiser cette tâche via script Python ou FrontScript avec dépôt sécurisé et gestion d’erreurs.
 
+=== 3.8. Infrastructure interne insuffisante
+
+*Observation* :: L’équipe ne dispose ni de serveur de batch ni d’un environnement de développement propre.  
+*Risque* :: Manque d’autonomie, dépendance à l’éditeur pour les tests.  
+*Recommandation* :: Mettre en place un serveur de batch pour les flux internes et un serveur de développement localisé.
+
 == 4. Étonnements organisationnels
 
-=== 4.1. Rôles non définis
+=== 4.1. Rôles et responsabilités 
 
-*Observation* :: Absence de cartographie des rôles fonctionnels et techniques.  
-*Risque* :: Ambiguïtés, doublons, tâches non prises en charge.  
-*Recommandation* :: Formaliser les responsabilités et désigner des référents par périmètre.
+*Observation* :: Rôles non clairement définis ou ambigus 
+*Risque* :: Doublons, tâches non prises en charge, tension entre les équipes
+*Recommandation* :: Délimiter le périmètre de chaque acteur (Editeur, MOE, MOA, Référents métier)
 
 === 4.2. Absence de backups opérationnels
-
 *Observation* :: Aucun plan de continuité ou backup désigné sur les sujets critiques.  
 *Risque* :: Perte de connaissances, rupture de service.  
 *Recommandation* :: Identifier des backups et organiser la montée en compétences.
@@ -82,13 +86,7 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 *Risque* :: Perte de temps, dispersion des efforts.  
 *Recommandation* :: Limiter la présence aux seuls référents concernés, diffuser ensuite les décisions.
 
-=== 4.4. Infrastructure interne insuffisante
-
-*Observation* :: L’équipe ne dispose ni de serveur de batch ni d’un environnement de développement propre.  
-*Risque* :: Manque d’autonomie, dépendance à l’éditeur pour les tests.  
-*Recommandation* :: Mettre en place un serveur de batch pour les flux internes et un serveur de développement localisé.
-
-== 5. Synthèse des recommandations prioritaires
+== 5. Synthèse des recommandations prioritaires et leurs statuts
 
 |===
 | Domaine | Recommandation | Priorité | Statut | Actions
@@ -96,13 +94,26 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 | Gestion des versions | Intégrer un outil de versionning, définir une stratégie de backup | Haute | En cours | - Création d'un dépôt sur SPIC Covéa +
 - Faire le lien avec Bitbucket pour le versionning GIT +
 - Faire le lien avec les tickets JIRA pour le cloisonnement
-| Livraisons éditeur | Mettre en place des packages documentés et testés | Haute | Demande à formaliser |
-| Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute | A valider | 
-| Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne | Demande à formaliser |
-| Infrastructures | Créer un serveur batch + dev interne | Moyenne | A valider et chiffrer | 
+| Livraisons éditeur | Mettre en place des packages documentés et testés | Haute | A démarrer | Demande à formaliser
+| Sécurité des accès | Réduire les comptes éditeur, journaliser les interventions | Haute | A démarrer | Demande à formaliser
+| Documentation | Exiger des SFD et des docs techniques systématiques | Moyenne | A démarrer | Demande à formaliser
+| Infrastructures | Créer un serveur batch + environnement de dev interne | Moyenne | A valider et chiffrer | 
 |===
 
-== 6. Points positifs
+== 6. Autres constats
+
+|===
+| Domaine | Recommandation | Priorité | Statut | Actions
+
+| Gestion des flux | Faciliter le suivi du RUN et le traitement des rejets | Haute | En cours | - Alerte mail mise en place au dépôt d'un fichier métier +
+- Simulation du fichier pour détecter d'éventuelles erreurs +
+- Génération de la matrice complémentaire par un script +
+- Création d'un canal TEAMS pour le suivi de traitement et l'archivage des fichiers traités
+| Analyse des tickets par la MOA | Rendre les administrateurs fonctionnels autonomes dans l'utilisation de l'outil | Moyenne | En cours | - Mise à disposition de tableau de bord d'analyse + 
+- Création d'un programme permettant de s'attribuer les droits d'un utilisateur pour faciliter la reproduction des anomalies 
+|==
+
+== 7. Points positifs
 
 - Méthode agile bien intégrée avec daily efficaces.
 - Bonne communication et partage d’informations.
@@ -112,4 +123,4 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 
 == 7. Conclusion
 
-L’équipe bénéficie d’un cadre méthodologique solide et d’un bon engagement collectif. Néanmoins, plusieurs fragilités opérationnelles peuvent être rapidement corrigées via la mise en place de pratiques plus industrielles (outillage, documentation, cloisonnement des environnements) et une redéfinition des rôles. Ces mesures renforceront la résilience, l’autonomie et la maîtrise du cycle de vie applicatif.
+Plusieurs fragilités opérationnelles peuvent être rapidement corrigées via la mise en place de pratiques plus industrielles (outillage, documentation, cloisonnement des environnements) et une redéfinition des rôles (en interne et avec l'éditeur). Ces mesures renforceront la résilience, l’autonomie et la maîtrise du cycle de vie applicatif.
