@@ -57,9 +57,9 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 
 === 3.7. Dépendance excessive pour la fonctionnalité de démultiplication
 
-*Observation* :: Chaque évolution de démultiplication nécessite une intervention éditeur.  
+*Observation* :: Chaque évolution majeure ou création de nouvelle grille nécessite une intervention éditeur.  
 *Risque* :: Allongement des délais, coûts inutiles.  
-*Recommandation* :: Automatiser cette tâche via script Python ou FrontScript avec dépôt sécurisé et gestion d’erreurs.
+*Recommandation* :: Automatiser cette tâche via script Python ou FrontScript avec dépôt sécurisé et gestion d’erreurs. Rapatrier cette tâche du côté MOA
 
 === 3.8. Infrastructure interne insuffisante
 
