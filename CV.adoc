@@ -1,0 +1,89 @@
+= Thierry Resampa Antoni
+:icons: font
+:source-highlighter: rouge
+:doctype: article
+:toc: macro
+:toc-title: Sommaire
+:toclevels: 1
+
+[cols="3a,5a", frame=none, grid=none]
+|===
+|
+== Contact
+
+📍 68 avenue Rouget de Lisle, +
+Vitry-sur-Seine, France +
+📞 06 21 82 22 42 +
+✉️ thierryantoni.619@gmail.com +
+
+[.skills]
+== Formations & Certifications
+
+- *2023* – Machine Learning (NLP, Model Performance), _PDA Academy_
+- *2021* – ISTQB Certified Tester (Foundation), _CFTL_
+- *2020* – Gestion de projet Agile, _Docendi_
+- *2020* – BI & SI décisionnels, _Ib-Cegos_
+- *2017* – Oracle SQL & PL/SQL, _Teraliance_
+- *2015* – Master 2 Mathématiques Appliquées ISIFAR, _Université Paris 7 Diderot_
+
+== Compétences
+
+- Expertise technique : eFront ERM, Salesforce
+- Gestion de projet : Agile, Scrum, ISTQB, BI décisionnelle, Git
+- Développement full stack : Python (Django), JavaScript, React, Node.js, VB.Net, HTML/CSS
+- QA / Tests : Cypress, Cucumber, Selenium
+- Business Intelligence : Oracle, Power BI, SSRS, SSIS, Talend, JasperSoft, QlikView
+- Data Science : Python (Pandas, PyTorch), R, SAS
+
+== Langues
+
+- Français : langue maternelle
+- Anglais : professionnel (niveau technique)
+
+|
+== Profil
+
+Responsable informatique avec plus de 10 ans d’expérience dans la gestion de projets IT, le développement de solutions risques (eFront ERM) et la production de reporting réglementaire. Spécialiste des environnements Banque/Assurance, reconnu pour ma rigueur, ma polyvalence technique et mon sens de l’analyse.
+
+== Expériences professionnelles
+
+=== Responsable d’applications – *Covéa, Paris*  
+_Avril 2025 – Aujourd’hui_
+
+- Audit technique de la solution eFront ERM
+- Automatisation des flux d'import de données
+- Conception d'outils de supervision pour les équipes MOE/MOA
+- Implémentation d’un cloisonnement des développements et gestion du versionning
+
+=== Responsable d’applications – *Groupama, Paris*  
+_2021 – 2025_
+
+- Audit de performance des applications de la Direction des Risques
+- Mise en production de la version majeure Solstice d'eFront ERM
+- Déploiement de 10 scénarios de stress tests financiers
+- Calcul des limites saturées par filiale et au niveau groupe
+
+=== Chef de projet MOA – *La Banque Postale, Montrouge*  
+_2017 – 2021_
+
+- Modernisation du parc applicatif : 5 sites déployés, 50 000 utilisateurs
+- Mise en œuvre de tests automatisés et d’outils de versionning
+- Déploiement d’API entre Salesforce et les applications internes
+- Intégration de l’outil BI JasperSoft pour la Direction commerciale
+
+=== Consultant Progiciel Risques – *eFront ERM (Blackrock), Paris*  
+_2015 – 2017_
+
+- Optimisation des performances applicatives
+- Conception de reporting réglementaires complexes (Banque de France, ADP, Exane)
+- Support, formation et accompagnement de 10 à 20 clients sur ERM/GRC
+
+=== MOA Progiciel Risques – *Groupe CRC, La Réunion*  
+_2014 – 2015_
+
+- Déploiement d’eFront ERM dans 4 directions du groupe
+- Formation et accompagnement des utilisateurs
+- Création de reporting Solvabilité II et tableaux de bord de pilotage
+
+|===
+
