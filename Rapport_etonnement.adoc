@@ -109,8 +109,9 @@ L’équipe est impliquée, structurée en mode projet, avec une réelle dynamiq
 - Simulation du fichier pour détecter d'éventuelles erreurs +
 - Génération de la matrice complémentaire par un script +
 - Création d'un canal TEAMS pour le suivi de traitement et l'archivage des fichiers traités
-| Analyse des tickets par la MOA | Rendre les administrateurs fonctionnels autonomes dans l'utilisation de l'outil | Moyenne | En cours | - Mise à disposition de tableau de bord d'analyse + 
-- Création d'un programme permettant de s'attribuer les droits d'un utilisateur pour faciliter la reproduction des anomalies 
+| Analyse par la MOA | Rendre les administrateurs fonctionnels autonomes dans l'utilisation de l'outil | Moyenne | En cours | - Mise à disposition de tableau de bord d'analyse + 
+- Création d'un programme permettant de s'attribuer les droits d'un utilisateur pour faciliter la reproduction des anomalies
+| Analyse par la MOE | Faciliter les analyses de données incohérentes | Moyenne | En cours | - Mise à disposition d'un tableau de bord de supervision (2 modules installés) 
 |==
 
 == 7. Points positifs
