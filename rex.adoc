@@ -1,0 +1,106 @@
+= Retour d'Expérience – Montée de version eFront et activation du skin Solstice
+Mai 2024 - Avril 2025
+Auteur: Thierry Antoni
+
+== 1. Contexte
+
+Le progiciel eFront utilisé dans le cadre de la gestion des risques opérationnels, du contrôle et de l'audit interne a été mis à jour de la version *2021.3* vers la version *2023.2*.
+
+Cette montée de version avait pour objectifs principaux :
+- Bénéficier des nouvelles fonctionnalités apportées par la version 2023.2
+- Profiter de l'amélioration de l'interface utilisateur (nouveau design Solstice)
+- Maintenir la conformité et la compatibilité avec les exigences éditeur
+
+Périmètre concerné : environnement de production principal, utilisateurs internes, documentation fonctionnelle et technique.
+
+== 2. Préparation de la montée de version
+
+*Étapes préalables réalisées :*
+
+- Analyse d'impacts techniques côté serveur (Compatibilité) => 04/2024 à 05/2024
+- Réservation de l'environnement de TEC (backup de la prod et mise à jour du binaire) => 05/2024
+- Analyse d'impacts techniques du paramétrage => 05/2024
+- Formation technique par l'éditeur (mise à niveau) => 06/2024
+- Planification / Planning prévisionnel
+- Préparation d'un plan de communication interne
+
+.Planning initial
+|===
+|Quoi |Par qui |Quand 
+
+|Paramétrage et création des STD |MOE |06/2024 - 09/2024
+|Recette et MAJ des SFD |MOA |09/2024 - 11/2024
+|Formation et recette utilisateurs |MOA |11/2024 - 01/2024
+|Mise en production |MOE |02/2024
+|===
+
+
+*Préconisations de l'éditeur :*
+- Migration manuelle de paramétrage sous le skin solstice
+- Activer le skin Solstice sur tous les profils
+- Optimisation du paramétrage avec la nouvelle version
+- Sécurisation de l'accès aux données 
+- Remise au standard des composants spécifiques 
+- Utilisation du Wall sur les évaluations (refonte du paramétrage)
+- Supprimer l'accès aux évaluations depuis les onglets
+
+
+== 3. Incidents / difficultés rencontrées
+
+- Un effort de *reparamétrage fonctionnel* non anticipé a été nécessaire post-migration
+- Des pages existantes ont nécessité un *refactoring complet* pour correspondre aux nouveaux composants graphiques
+- Travaux additionnels pour la *mise à jour de la documentation MOA* et l’*accompagnement des utilisateurs*
+
+Malgré ces points, aucun incident bloquant n’a été observé en production.
+
+.Chronologie réelle
+|===
+|Quoi |Par qui |Prévu le | Réalisé le |Pourquoi |Impacts
+
+|Paramétrage et création des STD |MOE |06/2024 - 09/2024 |06/2024 - 12/2025 | Production en parallèle, Demande d'évolutions |Découpage en lot et priorisation
+|Recette et MAJ des SFD |MOA |09/2024 - 11/2024 |09/2024 - 03/2025 | SFD non existantes, ressources insuffisantes, développements non livrés |Découpage en lot et priorisation
+|Formation et recette utilisateurs |MOA |11/2024 - 01/2024 |02/2024 - 04/2025 |Recette non réalisée |Manque de temps pour s'approprier et tester
+|Mise en production |MOE |02/2024 | 04/2025 | NOGO de la MOA et contrainte de gel des développements | Premier lot livré en _urgence_
+
+== 4. Déroulement de la MEP
+
+La MEP s’est déroulée en avril 2025, sur une plage d’intervention de 3 jours, en suivant une méthode *big bang* (interruption programmée du service). +
+
+.Plan
+|===
+|Quoi |Par qui |Quand 
+
+|Mode maintenance de la production |MOE |Mercredi soir
+|Installation du binaire |IT |Jeudi
+|Mise à jour du paramétrage |MOE |Vendredi
+|Vérification fonctionnelle |MOA |Lundi
+|Ouverture de service |MOE |Lundi soir
+
+|===
+
+
+== 5. Résultat obtenu
+
+Points positifs :
+- Déploiement des *nouvelles fonctionnalités* attendues (fonctionnalités à détailler selon le cas)
+- *Amélioration notable de l’ergonomie* grâce au nouveau design
+- Performances globales inchangées ou légèrement améliorées
+
+Points à surveiller :
+- Complexité accrue dans la phase de reprise des paramétrages
+- Charges projet sous-estimées côté MOA (documentation et conduite du changement)
+
+== 6. Enseignements / recommandations
+
+- Prévoir davantage de temps pour la phase de tests fonctionnels post-montée
+- Anticiper les évolutions de design pouvant impacter fortement l’UX/UI
+- Mobiliser la MOA en amont pour mise à jour documentaire et formations
+- Documenter précisément les nouveaux paramétrages requis dans un guide interne
+
+== 7. Conclusion
+
+La montée de version Solstice 2024.2 a été réalisée avec succès malgré quelques ajustements nécessaires en phase post-migration. Le progiciel est désormais aligné avec les préconisations éditeur et offre une meilleure expérience utilisateur.
+
+Les retours utilisateurs sont globalement positifs. Un point de suivi est prévu à M+1 pour évaluer la stabilisation des usages et l’adoption des nouveautés.
+
+
